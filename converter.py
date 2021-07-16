@@ -19,7 +19,7 @@ def mathml2latex_yarosh(equation):
     xslt = etree.parse(xslt_file)
     transform = etree.XSLT(xslt)
     newdom = transform(dom)
-    return unicode(newdom)
+    return str(newdom)
 
 
 def _call_mathml_cloud(equation, mathtype):
@@ -35,7 +35,7 @@ def _call_mathml_cloud(equation, mathtype):
             # bug in MathML Cloud. It sometimes returns 200 but no result
             # (bummer).
             return 'null'
-    except Exception, err:
+    except Exception as err:
         sys.stderr.write('MathML Cloud ERROR: %sn' % str(err))
         sys.exit(2)
 
